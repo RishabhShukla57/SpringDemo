@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+<bean class  ="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+<bean id = "rectangle"  class ="org.rishabh.springdemo.Rectangle">
+</bean>
+<bean id = "point" class = "org.rishabh.springdemo.Point">
+		<property name="x" value = "30"></property>
+		<property name="y" value="20"></property>
+</bean>
+
+<!--
+Bean definition inheritance as Point list type property
+ 
+<bean id ="parenttriangle" class = "org.rishabh.springdemo.Triangle" abstract="true">
+	<property name="pointList" >
+	<list>
+	<ref bean="zeroPoint" />
+	</list>
+	</property>
+</bean>
+<bean id ="triangle" class = "org.rishabh.springdemo.Triangle" parent  = "parenttriangle">
+	<property name="pointList" >
+	<list merge="true">
+	<ref bean="point1" />
+	</list>
+	</property>
+</bean>
+
+-->
+
+<!--
+
+Bean definition inheritance as reference of Point type  
+<bean id ="parenttriangles" class = "org.rishabh.springdemo.Triangle">
+	<property name="pointA" ref ="zeroPoint" >
+	</property>
+</bean>
+<bean id ="triangle1" class = "org.rishabh.springdemo.Triangle" parent="parenttriangles">
+	<property name="pointA" ref="point1"></property>
+	<property name="pointB" ref="point1"></property>
+	<property name="pointC" ref="point2"></property>
+</bean>
+
+<bean id ="triangle2" class = "org.rishabh.springdemo.Triangle" parent="parenttriangles">
+	<property name="pointB" ref="point1"></property>
+	<property name="pointC" ref="point2"></property>
+</bean>
+ -->
+ 
+ <!-- 
+<bean id ="zeroPoint" class = "org.rishabh.springdemo.Point">
+	<property name="x" value="0"></property>
+	<property name="y" value="0"></property>
+</bean>
+<bean id ="point1" class = "org.rishabh.springdemo.Point">
+	<property name="x" value="-20"></property>
+	<property name="y" value="0"></property>
+</bean>
+<bean id ="point2" class = "org.rishabh.springdemo.Point">
+	<property name="x" value="20"></property>
+	<property name="y" value="0"></property>
+</bean>
+
+ -->
+
+
+
+
+
+<!--
+List type property  && scope of bean 
+<bean id ="triangle" class = "org.rishabh.springdemo.Triangle" name="triangle-alias" scope="singleton">
+	<property name="pointList">
+		<list>
+		<ref bean="zeroPoint"/>
+		<ref bean="point1"/>
+		<ref bean="point2"/>
+		</list>
+	</property>
+</bean>
+
+<bean id ="zeroPoint" class = "org.rishabh.springdemo.Point">
+	<property name="x" value="0"></property>
+	<property name="y" value="0"></property>
+</bean>
+<bean id ="point1" class = "org.rishabh.springdemo.Point">
+	<property name="x" value="-20"></property>
+	<property name="y" value="0"></property>
+</bean>
+<bean id ="point2" class = "org.rishabh.springdemo.Point">
+	<property name="x" value="20"></property>
+	<property name="y" value="0"></property>
+</bean>
+
+ -->
+
+<!-- 
+Injecting Objects when points specific to traingle
+
+<bean id ="triangle" class = "org.rishabh.springdemo.Triangle" name="triangle-alias">
+	<property name="pointA" ref="zeroPoint">
+	</property>
+	<property name="pointB" >
+		<bean  class = "org.rishabh.springdemo.Point">
+			<property name="x" value="20"></property>
+			<property name="y" value="0"></property>
+		</bean>
+	</property>
+	<property name="pointC">
+		<bean  class = "org.rishabh.springdemo.Point">
+			<property name="x" value="20"></property>
+			<property name="y" value="0"></property>
+		</bean>
+	</property>
+</bean>
+
+<alias name="zeroPoint" alias="intialPoint"/>
+
+<bean id ="zeroPoint" class = "org.rishabh.springdemo.Point">
+	<property name="x" value="0"></property>
+	<property name="y" value="0"></property>
+</bean>
+
+Injecting Objects
+
+<bean id ="triangle" class = "org.rishabh.springdemo.Triangle">
+	<property name="pointA" ref="zeroPoint"></property>
+	<property name="pointB" ref="point1"></property>
+	<property name="pointC" ref="point2"></property>
+</bean>
+<bean id ="zeroPoint" class = "org.rishabh.springdemo.Point">
+	<property name="x" value="0"></property>
+	<property name="y" value="0"></property>
+</bean>
+<bean id ="point1" class = "org.rishabh.springdemo.Point">
+	<property name="x" value="-20"></property>
+	<property name="y" value="0"></property>
+</bean>
+<bean id ="point2" class = "org.rishabh.springdemo.Point">
+	<property name="x" value="20"></property>
+	<property name="y" value="0"></property>
+</bean>
+
+-->
+
+
+ 
+
+<!--  
+Injecting as constructor  or setter
+
+<bean id="triangle" class="org.rishabh.springdemo.Triangle">
+	  	<property name="type" value="Equilateral"/>  
+		<constructor-arg index="1" value="20"> </constructor-arg>
+		<constructor-arg value="Equilateral"> </constructor-arg> 
+		<constructor-arg index="0" value="Equilateral"> </constructor-arg>
+</bean>
+-->
+
+
+
+
+
+</beans>
